@@ -29,28 +29,7 @@ const HomePage: React.FC = () => {
     }
   };
 
-  return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-800 p-6">
-      <UserInfo />
-      <div className="p-6 max-w-xl mx-auto bg-white dark:bg-gray-900 shadow-md rounded-2xl space-y-6 text-gray-900 dark:text-gray-100">
-        <div className="space-y-4">
-          {messages.map((msg, index) => (
-            <p
-              key={index}
-              className={
-                msg.sender === "user"
-                  ? "text-right text-blue-600 dark:text-blue-400"
-                  : "text-left text-green-600 dark:text-green-400"
-              }
-            >
-              <strong>{msg.sender}:</strong> {msg.text}
-            </p>
-          ))}
-        </div>
-        <ChatInput onSend={handleSend} />
-      </div>
-    </div>
-  );
+  return <div className="min-h-screen bg-gray-100 dark:bg-gray-800 p-6"></div>;
 };
 
 export default HomePage;
