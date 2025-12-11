@@ -5,17 +5,18 @@ const Navbar = () => {
         <div className="flex h-16 items-center">
           {/* Left: Logo + Title */}
           <div className="flex items-center mr-8">
-            <img src="/arm.svg" alt="GymBro Logo" className="h-8 w-8" />
-            <span className="ml-2 font-bold text-xl">GymBro</span>
+            {/* <img
+              src="/tictactoe.svg"
+              alt="Tic Tac Toe Logo"
+              className="h-8 w-8"
+            /> */}
+            <span className="ml-2 font-bold text-xl">Tic Tac Toe</span>
           </div>
 
           {/* Right: Links */}
           <div className="flex space-x-6 ml-auto">
             <a href="#" className="hover:text-blue-400 transition-colors">
               User Info
-            </a>
-            <a href="#" className="hover:text-blue-400 transition-colors">
-              Dashboard
             </a>
             <a href="#" className="hover:text-blue-400 transition-colors">
               About
