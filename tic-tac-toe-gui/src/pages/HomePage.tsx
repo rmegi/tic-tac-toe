@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import UserInfo from "../features/userInfo/userInfo";
-import ChatInput from "../features/chatInput/chatInput";
-import { askCoach } from "../utils/askCoach";
-
-interface Message {
-  sender: "user" | "coach";
-  text: string;
-}
+import Board from "../features/board/board";
 
 const HomePage: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
