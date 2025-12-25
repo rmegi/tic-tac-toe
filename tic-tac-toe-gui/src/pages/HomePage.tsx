@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Board from "../features/board/board";
+import AiThinkingLoader from "../features/loader/loader";
 
 const API_URL = "http://localhost:8000"; // adjust if needed
 
@@ -38,6 +39,7 @@ const HomePage: React.FC = () => {
   return (
     <div className="min-h-screen dark:bg-gray-800 p-6">
       <Board board={board} onCellClick={handleCellClick} />
+      {loading && <AiThinkingLoader />}
     </div>
   );
 };
