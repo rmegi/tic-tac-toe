@@ -1,16 +1,38 @@
 import React, { useState } from "react";
 import Board from "../features/board/board";
 
-const HomePage: React.FC = () => {
-  const [messages, setMessages] = useState<Message[]>([]);
-  const backendUrl = "http://localhost:8000";
+const API_URL = "http://localhost:8000"; // adjust if needed
 
-  const handleCellClick = (i: number) => {
-    if (board[i] !== "") return;
+const HomePage: React.FC = () => {
+  const [board, setBoard] = useState<string[]>(Array(9).fill(""));
+  const [loading, setLoading] = useState(false);
+
+  const handleCellClick = async (i: number) => {
+    if (board[i] !== "" || loading) return;
+
     const newBoard = [...board];
     newBoard[i] = "X";
-    console.log(newBoard);
     setBoard(newBoard);
+
+    const boardState = newBoard.join(",");
+
+    try {
+      setLoading(true);
+
+      const res = await fetch(`${API_URL}/play/${boardState}`);
+      const data = await res.json();
+
+      const aiMoveIndex = parseInt(data.response, 10);
+      if (typeof aiMoveIndex === "number" && newBoard[aiMoveIndex] === "") {
+        const aiBoard = [...newBoard];
+        aiBoard[aiMoveIndex] = "O";
+        setBoard(aiBoard);
+      }
+    } catch (err) {
+      console.error("❌ Error calling backend:", err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
