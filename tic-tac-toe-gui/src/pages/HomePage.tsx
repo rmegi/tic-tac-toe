@@ -1,13 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Board from "../features/board/board";
 import AiThinkingLoader from "../features/loader/loader";
+import { calculateWinner } from "../utils/calculateWinner";
 
 const API_URL = "http://localhost:8000"; // adjust if needed
 
 const HomePage: React.FC = () => {
   const [board, setBoard] = useState<string[]>(Array(9).fill(""));
   const [loading, setLoading] = useState(false);
+  const [winner, setWinner] = useState<string | null>(null);
 
+  useEffect(() => {
+    const result = calculateWinner(board);
+
+    if (result) {
+      setWinner(result);
+    } else if (board.every((cell) => cell !== "")) {
+      setWinner("Draw");
+    }
+  }, [board]);
   const handleCellClick = async (i: number) => {
     if (board[i] !== "" || loading) return;
 
@@ -38,6 +49,11 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="min-h-screen dark:bg-gray-800 p-6">
+      {winner && (
+        <div className="mb-4 text-3xl font-bold text-center">
+          {winner === "Draw" ? "It's a Draw!" : `Winner: ${winner}`}
+        </div>
+      )}
       <Board board={board} onCellClick={handleCellClick} />
       {loading && <AiThinkingLoader />}
     </div>
