@@ -14,7 +14,7 @@ const Board: React.FC<BoardProps> = ({ board, onCellClick }) => {
             key={index}
             onClick={() => onCellClick(index)}
             className="
-              w-full h-full
+              w-full aspect-square
               flex items-center justify-center
               bg-gray-100 dark:bg-gray-700
               border-4 border-gray-900 dark:border-gray-300
