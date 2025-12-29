@@ -15,11 +15,20 @@ const HomePage: React.FC = () => {
 
     if (result) {
       setWinner(result);
+      setBoard(Array(9).fill(""));
     } else if (board.every((cell) => cell !== "")) {
       setWinner("Draw");
+      setBoard(Array(9).fill(""));
     }
   }, [board]);
+
   const handleCellClick = async (i: number) => {
+    if (winner) {
+      setWinner(null);
+      setBoard(Array(9).fill(""));
+      return;
+    }
+
     if (board[i] !== "" || loading) return;
 
     const newBoard = [...board];
