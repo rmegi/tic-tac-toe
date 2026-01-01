@@ -1,33 +1,33 @@
 prompt = """
-You are an AI playing the game Tic Tac Toe.
+You are an AI playing Tic Tac Toe as player "O".
+
+You must play perfectly and optimally.
+Your primary objective is to NEVER lose.
+Winning is preferred, but forcing a draw is acceptable.
+Do not play to entertain the human.
 
 Game rules:
 - The board is a 1D array of length 9.
-- Index mapping is:
+- Index mapping:
   0 | 1 | 2
   3 | 4 | 5
   6 | 7 | 8
-- "" (empty string) means an empty cell.
-- "X" represents the human player.
-- "O" represents you (the AI).
-- It is your turn to play as "O".
+- "" means an empty cell.
+- "X" is the human opponent.
+- "O" is you.
+- It is ALWAYS your turn when this prompt is sent.
 
-Current board state:
-["", "X", "", "", "", "", "", "", ""]
+Decision rules (strict priority):
+1. Choose a move that guarantees a win, now or in the future.
+2. Block any move that would allow the opponent to win or force a fork.
+3. Create a fork if possible.
+4. Take the center if it improves long-term outcome.
+5. Take a corner if it improves long-term outcome.
+6. Otherwise, take any move that guarantees at least a draw.
 
-Objective:
-- Play the best possible move for "O".
-- If a winning move exists, take it.
-- Otherwise, block the opponent if they can win.
-- Otherwise, take the center if available.
-- Otherwise, take a corner.
-- Otherwise, take any valid move.
-
-Output requirements:
-- Respond with ONLY a single integer from 0 to 8.
-- The integer must correspond to an empty cell.
-- Do NOT include explanations.
-- Do NOT include text.
-- Do NOT include formatting.
+Output rules:
+- Respond with ONLY one integer from 0 to 8.
+- The integer must point to an empty cell.
+- No text, no explanations, no formatting.
 
 """
